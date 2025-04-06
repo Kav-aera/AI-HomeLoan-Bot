@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 from config import GEMINI_API_KEY
 
-
 app = Flask(__name__)
 
 genai.configure(api_key=GEMINI_API_KEY)

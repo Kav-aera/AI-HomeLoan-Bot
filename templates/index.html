@@ -1,63 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark">
 <head>
-    <title>AI Home Loan Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #f9f9f9;
-            text-align: center;
-        }
-        h1 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: 60%;
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-        .chatbox {
-            margin: 20px auto;
-            width: 70%;
-            text-align: left;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-        .footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>AI Home Loan Bot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>AI Home Loan Eligibility Checker</h1>
+<style>
+    .blinking-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    color: #ccc;
+    animation: blink-cursor 0.8s steps(1) infinite;
+    }
 
-    <form method="POST">
-        <input type="text" name="message" placeholder="Ask me about home loan eligibility..." required>
-        <button type="submit">Send</button>
-    </form>
+    @keyframes blink-cursor {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+    }
 
-    {% if user_input %}
-    <div class="chatbox">
-        <p><strong>You:</strong> {{ user_input }}</p>
-        <p><strong>Bot:</strong> {{ bot_response }}</p>
+    .typing-indicator .dots {
+      display: inline-block;
+      margin-left: 4px;
+      animation: blink 1s infinite steps(1, start);
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+  
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out;
+    }
+  
+    .blinking-cursor {
+      display: inline-block;
+      margin-left: 2px;
+      color: #ccc;
+      animation: blink-cursor 0.8s steps(1) infinite;
+    }
+  
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+  </style>
+  
+
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white h-screen flex flex-col font-sans">
+  <div class="container mx-auto p-4 flex flex-col h-full">
+
+    <!-- Header -->
+    <div class="text-center mb-4 animate-fade-in">
+      <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-500 drop-shadow-lg flex items-center justify-center gap-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" alt="Bot" class="w-9 h-9 brightness-125">
+        AI Home Loan Eligibility Checker
+      </h1>
+      <p class="text-sm text-gray-400 mt-1">Your smart assistant for loan questions</p>
     </div>
-    {% endif %}
 
-    <div class="footer">
-        Developed by - <strong>Your Name</strong>
+    <!-- Chat Area -->
+    <div id="chat-history" class="flex-1 overflow-y-auto p-4 bg-gray-800 rounded-xl shadow-inner space-y-4 border border-gray-700">
+      <!-- Chat messages will be injected here -->
     </div>
+<!-- Input Area -->
+<!-- Input Area -->
+<div class="flex items-center gap-2 mt-4">
+    <!-- Plus / Attachment Icon -->
+    <div>
+      <input type="file" id="image-input" accept="image/*" class="hidden" />
+      <label for="image-input"
+             class="cursor-pointer p-2 rounded-full transition"
+             title="Upload Image">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.586-6.586a4 4 0 10-5.656-5.656L5.414 13.414a6 6 0 108.485 8.485L20 15.828" />
+        </svg>
+      </label>
+    </div>
+  
+    <!-- Text Input -->
+    <input type="text" id="user-input" placeholder="Type your message..."
+           class="flex-1 p-3 rounded-xl bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring focus:border-blue-500 transition" />
+  
+    <!-- Send Button -->
+    <button id="send-btn"
+            class="bg-blue-600 p-3 rounded-full hover:bg-blue-700 transition duration-200"
+            title="Send">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" fill="none"
+           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5 13l4 4L19 7" />
+      </svg>
+    </button>
+  
+    <!-- Optional: New Chat Button -->
+    <button id="new-chat-btn"
+            class="bg-gray-600 px-3 py-2 rounded-xl hover:bg-gray-700 transition duration-200 font-medium hidden sm:block">
+      New Chat
+    </button>
+  </div>
+  
+  
+
+    <!-- Footer -->
+    <footer class="text-center mt-4 text-gray-500 text-xs">Developed by Kav-aera 💙</footer>
+  </div>
+
+  <script src="/static/script.js"></script>
 </body>
 </html>

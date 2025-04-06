@@ -5,7 +5,7 @@ from config import GEMINI_API_KEY
 app = Flask(__name__)
 
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-pro')
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 # system_instruction = """
 # You are an AI assistant that determines home loan eligibility. Ask relevant questions about income, age, employment, existing loans, and credit score. 
@@ -25,6 +25,7 @@ For example:
   "Hi! I'm your AI assistant here to help you understand home loan eligibility. Feel free to ask about documents, salary criteria, interest rates, and more!"
 
 Ignore or decline all other non-home-loan topics like movies, jokes, history, etc.
+
 Stay in this mode until the session ends.
 """
 

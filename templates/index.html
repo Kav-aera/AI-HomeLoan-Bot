@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Home Loan Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .chatbox {
+            margin: 20px auto;
+            width: 70%;
+            text-align: left;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Home Loan Eligibility Checker</h1>
+
+    <form method="POST">
+        <input type="text" name="message" placeholder="Ask me about home loan eligibility..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if user_input %}
+    <div class="chatbox">
+        <p><strong>You:</strong> {{ user_input }}</p>
+        <p><strong>Bot:</strong> {{ bot_response }}</p>
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        Developed by - <strong>Your Name</strong>
+    </div>
+</body>
+</html>
